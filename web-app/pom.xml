@@ -10,33 +10,15 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<groupId>com.qp</groupId>
 	<artifactId>web-app</artifactId>
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>com.qp</groupId>
 			<artifactId>core</artifactId>
 			<version>0.0.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.qp</groupId>
-			<artifactId>web-admin</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<!--scope>provided</scope-->
 		</dependency>
 	</dependencies>
 

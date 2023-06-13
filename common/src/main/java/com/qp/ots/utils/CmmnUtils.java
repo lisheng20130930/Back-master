@@ -1,8 +1,5 @@
 package com.qp.ots.utils;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
-
-import java.io.File;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
