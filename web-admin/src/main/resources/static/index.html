@@ -1,0 +1,120 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<script src="vue.min.js"></script>
+	<script src="n.ajax.js"></script>
+	<link href="n.shared.css" rel="stylesheet" type="text/css" />
+	<title>RiskManagement Demo</title>
+	<style type="text/css">
+        span {
+            text-align: right;
+            width: 100px;
+            display: inline-block;
+        }
+  </style>
+	<script  language="javascript">
+      function toAppendPage(type) {
+      	if(type==0){
+        	location="append.html";
+        }else{
+        	location="import.html";
+        }
+      }
+  </script>
+</head>
+<body>
+<div style="background:#C1DAD7;"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RiskManagement Demo<br><br></div><br>
+	<div id="app" align="center">
+		<p align="center">
+			&nbsp;&nbsp;<button class="btn" onclick="toAppendPage(0)">风控评测查询</button>
+			&nbsp;<button class="btn" v-on:click="query()">刷新</button>
+			<span><button style="background:red" class="btn" v-on:click="clear()">清除列表</button></span>
+			<span><button class="btn" onclick="toAppendPage(1)">从数据库导入训练</button></span>
+		</p>
+		<table>
+			<tr>
+				<th v-for='item in columnList'>{{ item }}</th>
+			</tr>
+			<tr v-for='item in infoList'>
+				<td>{{ item["productID"] }}</td>
+				<td>{{ item["status"] }}</td>
+				<td>{{ item["score"] }}</td>
+				<td>{{ item["advise"] }}</td>
+				<td>{{ item["startTime"] }}</td>
+				<td>{{ item["endTime"] }}</td>
+			</tr>
+		</table>
+	</div>
+	<p align="center" style="color:green;font-size:14px;"><br><br><点击刷新可查看最新结果></p>
+</body>
+<script type="text/javascript">
+	var app = new Vue({
+		  el: '#app',
+		  data: {
+		  	columnList: ['流水号', '状态', '分数', '建议', '开始时间', '结束时间'],
+		  	infoList: [],
+		  },
+			methods: {
+				query: function(){
+					var postOption = {
+		    			ajaxType:"POST",
+		    			urlStr:"/rm-0.0.1/query",
+		    			ajaxData:{
+			        		"productID": "*"
+		    			}
+			    	};
+					Ajax(postOption,function(data){
+						//alert(JSON.stringify(data.data));
+						if(data.code==200){
+							app.infoList = data.data;							
+							for(var i = 0; i < app.infoList.length; i++){
+					        if(app.infoList[i].status=="等待中"){
+					        	//alert("refreshLater............");
+					        	refreshLater();
+					        	break;
+					        }
+					    }
+						}else{
+							alert("Query Failed22!!");
+						}
+					},function(error){
+		    			alert("Service Unavaliable");
+					});
+				},
+				
+				clear: function(){
+					if(confirm("您确定清除所有数据吗？")){
+						var postOption = {
+							ajaxType:"POST",
+							urlStr:"/rm-0.0.1/clear",
+							ajaxData:{
+								"token": "HZ83928302038"
+							}
+						};
+						Ajax(postOption,function(data){
+							//alert(JSON.stringify(data.data));
+							if(data.code==200){
+								app.infoList.splice(0,app.infoList.length);
+							}else{
+								alert("Clear Failed22!!");
+							}
+						},function(error){
+							alert("Service Unavaliable");
+						});
+					}
+				}
+			}
+	});
+	app.query();
+	
+	function refreshLater(){
+		setTimeout(function(){
+			app.query();
+		},2000);
+	}
+</script>
+</html>

@@ -1,0 +1,40 @@
+﻿table{
+  padding: 0;
+  margin: 0;
+  border-collapse: collapse;
+}      
+th{
+  border: 1px solid #009999;
+  padding: 6px 6px 6px 12px;
+  color: #4f6b72;
+  background: #C1DAD7;
+  text-align: center;
+}
+td {
+  border: 1px solid #009999;
+  padding: 6px 6px 6px 12px;
+  color: #4f6b72;
+  text-align: center;
+}
+.inpt {
+    box-sizing:border-box;
+    border:1px solid #ccc;
+    padding:5px;
+    border-radius:3px;
+    font-size:15;				    
+}			
+a{
+	text-decoration:none !important;	
+}
+.btn {
+	border-width: 0px;
+	border-radius: 3px;
+	background: #1E90FF;
+	cursor: pointer;
+	outline: none;
+	font-family: Microsoft YaHei;
+	color: white;
+	font-size: 16px;
+	padding-top:2px;
+	padding-bottom:5px;
+}
