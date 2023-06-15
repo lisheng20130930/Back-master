@@ -1,21 +1,16 @@
 package com.qp.ots.utils;
 
-import com.qp.ots.config.QProfile;
-
 public class Logger {
-    static{
-        try {
-            System.setProperty("log.dir", QProfile.DATA_DIR);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-    //private static Logger logger = org.apache.log4j.Logger.getLogger(Logger.class);
+    private static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(Logger.class);
     public synchronized static void log(String str){
-        //logger.warn(str);
+        logger.warn(str);
     }
 
     public static void trace(String str) {
         log(str);
+    }
+
+    public static void main(String[] args){
+        Logger.log("========================");
     }
 }
