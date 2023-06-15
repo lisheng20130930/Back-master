@@ -10,9 +10,9 @@ public class Logger {
             e.printStackTrace();
         }
     }
-    private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(Logger.class);
+    //private static Logger logger = org.apache.log4j.Logger.getLogger(Logger.class);
     public synchronized static void log(String str){
-        logger.warn(str);
+        //logger.warn(str);
     }
 
     public static void trace(String str) {
