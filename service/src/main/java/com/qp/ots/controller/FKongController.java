@@ -23,10 +23,10 @@ public class FKongController extends AbstractController {
     /**
      * 请求评分
      */
-    @RequestMapping(value="/api",method = RequestMethod.POST)
+    @RequestMapping(value="/api",method = RequestMethod.GET)
     public HttpResult rmApi(@RequestBody FKongDto req){
         LogUtil.log("api called. productID="+req.getGroupId()+",idCard="+req.getUsrInfo().getIdCard());
-        String productID = String.valueOf(System.currentTimeMillis());
+       /* String productID = String.valueOf(System.currentTimeMillis());
         boolean result = fkongServiceImpl.callRmApi(productID,req.getGroupId(),req.getFlag(),JSON.toJSONString(req.getUsrInfo()));
         if(!result){
             return HttpResult.error(300,"try later");
@@ -40,6 +40,7 @@ public class FKongController extends AbstractController {
         task.setEndTime("无");
         task.setStatus("等待中");
         super.cache.set(productID,task);
-        return HttpResult.success(productID);
+        return HttpResult.success(productID);*/
+        return HttpResult.success("I");
     }
 }

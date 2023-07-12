@@ -17,8 +17,13 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.qp</groupId>
-			<artifactId>core</artifactId>
+			<artifactId>service</artifactId>
 			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+			<version>2.1.0.RELEASE</version>
 		</dependency>
 	</dependencies>
 
